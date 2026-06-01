@@ -283,63 +283,54 @@ function showToast(msg){
 
 async function login(){
 
- const res = await fetch(
-  "/login",
-  {
-    method: "POST",
+  try{
 
-    headers: {
-      "Content-Type": "application/json"
-    },
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
 
-    body: JSON.stringify({
-      email: email.value,
-      password: password.value
-    })
-  }
-);
+    const res = await fetch(
+      "/login",
+      {
+        method: "POST",
 
-    const d=await res.json();
+        headers:{
+          "Content-Type":"application/json"
+        },
 
-    console.log("LOGIN RESPONSE:",d);
+        body: JSON.stringify({
+          email: email.value,
+          password: password.value
+        })
+      }
+    );
+
+    const d = await res.json();
+
+    console.log("LOGIN RESPONSE:", d);
 
     if(d.access_token){
 
-      localStorage.setItem(
-        "token",
-        d.access_token
-      );
+      localStorage.setItem("token", d.access_token);
+      localStorage.setItem("userid", d.userid);
+      localStorage.setItem("role", d.role);
 
-      localStorage.setItem(
-        "userid",
-        d.userid
-      );
+      if(d.role === "admin"){
 
-      localStorage.setItem(
-        "role",
-        d.role
-      );
+        window.location.href = "admin.html";
 
-      if(d.role==="admin"){
+      }else{
 
-        window.location.href="admin.html";
-
-      }
-      else{
-
-        window.location.href="upload.html";
+        window.location.href = "upload.html";
 
       }
 
-    }
-    else{
+    }else{
 
       showToast("Invalid email or password");
 
     }
 
-  }
-  catch(err){
+  }catch(err){
 
     console.error(err);
 
