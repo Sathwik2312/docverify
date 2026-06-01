@@ -259,7 +259,7 @@ async function load(){
     }
 
     const res=await fetch(
-      "http://localhost:5000/documents",
+      "/documents",
       {
         method:"POST",
 
@@ -366,7 +366,7 @@ async function downloadFile(id){
     const token=localStorage.getItem("token");
 
     const res=await fetch(
-      `http://localhost:5000/download/${id}`,
+      `/download/${docid}`,
       {
         method:"GET",
 
@@ -442,7 +442,7 @@ setInterval(async()=>{
     }
 
     const res=await fetch(
-      "http://localhost:5000/documents",
+      "/documents",
       {
         method:"POST",
 

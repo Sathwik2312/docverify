@@ -271,11 +271,11 @@ async function upload(){
 
     fd.append(
       "doc_type",
-      "Aadhar"
+      "ID Proof"
     );
 
     const res=await fetch(
-      "http://localhost:5000/upload",
+      "/upload",
       {
         method:"POST",
 
@@ -347,7 +347,7 @@ setInterval(async()=>{
     }
 
     const res=await fetch(
-      "http://localhost:5000/documents",
+      "/documents",
       {
         method:"POST",
 

@@ -435,7 +435,7 @@ async function load(){
     }
 
     const res=await fetch(
-      "http://localhost:5000/all-documents",
+      "/all-documents",
       {
         method:"GET",
 
@@ -565,7 +565,7 @@ async function verify(id,status){
     const token=localStorage.getItem("token");
 
     const res=await fetch(
-      "http://localhost:5000/verify",
+      "/verify",
       {
         method:"POST",
 
@@ -621,7 +621,7 @@ setInterval(async()=>{
     }
 
     const res=await fetch(
-      "http://localhost:5000/all-documents",
+      "/all-documents",
       {
         method:"GET",
 
